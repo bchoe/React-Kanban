@@ -24,7 +24,7 @@ class KanbanItem extends React.Component {
       const oReq = new XMLHttpRequest();
       oReq.addEventListener("load", (data) => {});
       oReq.addEventListener("error", () => {});
-      oReq.open("PUT", "http://localhost:3000/api/edit");
+      oReq.open("PUT", `${this.props.kanbanUrl}/edit`);
       oReq.setRequestHeader("content-type", "application/json");
       oReq.send(JSON.stringify({
       Status: this.props.Status,
@@ -66,7 +66,7 @@ class KanbanItem extends React.Component {
       const oReq = new XMLHttpRequest();
       oReq.addEventListener("load", (data) => {});
       oReq.addEventListener("error", () => {});
-      oReq.open("DELETE", "http://localhost:3000/api/delete");
+      oReq.open("DELETE", `${this.props.kanbanUrl}/delete`);
       oReq.setRequestHeader("content-type", "application/json");
       console.log("target Delete post")
       console.log("this.props.id",this.props.id);
