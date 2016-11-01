@@ -1,6 +1,6 @@
 {
   "development": {
-    "username": "Your Username Here",
+    "username": "YOUR USERNAME HERE",
     "password": null,
     "database": "react_kanban",
     "host": "127.0.0.1",
