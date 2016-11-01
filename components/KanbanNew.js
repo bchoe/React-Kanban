@@ -20,7 +20,7 @@ class KanbanNew extends React.Component {
   }
 
     //this is when button is clicked
-  handleSubmit(event) {
+    handleSubmit(event) {
     //prevents browser from submiting method
     event.preventDefault()
     console.log("event@@",event)
@@ -42,9 +42,9 @@ class KanbanNew extends React.Component {
               <form method ="post" action="/new" type="text">
                 <input type="text" placeholder="Title" onChange={this.handleChange} value={this.state.Title} name='title' /> <br />
                   <select name="priority" onChange={this.handleChange}>
-                    <option placeholder="Priority"  value="Low"    >Low</option>
-                    <option  placeholder="Priority"  value="Medium"   >Medium</option>
-                    <option  placeholder="Priority"  value="High"   >High</option>
+                    <option placeholder="Priority" value="Low" >Low</option>
+                    <option placeholder="Priority" value="Medium" >Medium</option>
+                    <option placeholder="Priority" value="High" >High</option>
                   </select> <br />
                 <input type="text" placeholder="Created By" onChange={this.handleChange} value={this.state.Createdby} name='createdby' /> <br />
                 <input type="text" placeholder="Assigned To" onChange={this.handleChange} value={this.state.Assignedto} name='assignedto' /> <br />

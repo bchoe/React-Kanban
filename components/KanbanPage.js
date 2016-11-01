@@ -4,10 +4,6 @@ import { addAllCards } from '../actions/kanbanActions'
 import KanbanList from './KanbanList';
 import KanbanNew from './KanbanNew';
 
-// export const LOAD_DATA = "LOAD_DATA";
-// import KanbanQueue from './KanbanQueue';
-
-
 class KanbanPage extends React.Component {
   constructor() {
     super();

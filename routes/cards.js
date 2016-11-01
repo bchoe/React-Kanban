@@ -50,7 +50,7 @@ cardRouter.route('/:id')
   //edit status
 cardRouter.route('/edit')
   .put((req,res) => {
-    console.log("wrong route to hit")
+    console.log("wrong route to hit");
     if (req.body.Status === "Queue") {
       Status = "In Progress";
     } else if (req.body.Status === "Done"){
@@ -61,10 +61,10 @@ cardRouter.route('/edit')
 
     }
      else {
+      console.log('done status');
       Status = "Done";
     }
     Card.update({
-
       Status: Status
     },{
       where: {
@@ -75,7 +75,8 @@ cardRouter.route('/edit')
     .then((card) => {
       res.send({
         success: true,
-        updatedCard: card[1][0].dataValues
+        updatedCard: card[1][0].dataValues,
+        Status: Status
       });
     })
     .catch(err => {
@@ -101,7 +102,7 @@ cardRouter.route('/edit')
 
   cardRouter.route('/editPost')
   .put((req,res) => {
-    console.log("req.body", req.body)
+    console.log("req.body", req.body);
     Card.update({
       Title:req.body.Title,
       Priority:req.body.Priority,
@@ -123,7 +124,7 @@ cardRouter.route('/edit')
     .catch(err => {
       console.error(err);
     });
-  })
+  });
 
 
 module.exports = cardRouter;

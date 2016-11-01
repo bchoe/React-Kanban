@@ -12,7 +12,7 @@ const kanbanPageReducer = (state = initialState, action) => {
       let indexToUpdate = state.findIndex(card => {
         return card.id === action.data.id;
       });
-      return state.update( indexToUpdate, (card) =>{
+      return state.update( indexToUpdate, (card) => {
 
       let cardCopy = JSON.parse(JSON.stringify(card));
       cardCopy.Status = action.data.status;

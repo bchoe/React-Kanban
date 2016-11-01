@@ -4,7 +4,7 @@ import { moveCards } from '../actions/kanbanActions'
 import { deleteCard } from '../actions/kanbanActions'
 import KanbanPage from './KanbanPage'
 
-class KanbanItem extends React.Component{
+class KanbanItem extends React.Component {
   constructor() {
     super();
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -13,8 +13,7 @@ class KanbanItem extends React.Component{
 
   handleSubmit(event) {
     let targetStatus = event.target.innerHTML;
-    if(targetStatus !== "Delete"){
-
+    if(targetStatus !== "Delete") {
 
       event.preventDefault();
       this.props.moveCards({
@@ -23,10 +22,14 @@ class KanbanItem extends React.Component{
       });
 
       const oReq = new XMLHttpRequest();
-      oReq.addEventListener("load", (data)=>{
-      });
-      oReq.addEventListener("error", ()=>{});
-
+      oReq.addEventListener("load", (data) => {});
+      oReq.addEventListener("error", () => {});
+      oReq.open("PUT", "http://localhost:3000/api/edit");
+      oReq.setRequestHeader("content-type", "application/json");
+      oReq.send(JSON.stringify({
+      Status: this.props.Status,
+      Title: this.props.Title
+      }));
 
       if(targetStatus === "Queue"){
         console.log("target queue")
@@ -49,7 +52,7 @@ class KanbanItem extends React.Component{
           status: targetStatus
         });
       }
-      //delete does not like this.
+
       oReq.send(JSON.stringify({
         Title:this.props.Title,
         Priority:this.props.Priority,
@@ -60,10 +63,6 @@ class KanbanItem extends React.Component{
 
     } else {
       this.props.deleteCard(this.props.id)
-      // this.props.deleteCard({
-      // id: this.props.id,
-      // status: targetStatus
-      // });
       const oReq = new XMLHttpRequest();
       oReq.addEventListener("load", (data) => {});
       oReq.addEventListener("error", () => {});
@@ -72,58 +71,53 @@ class KanbanItem extends React.Component{
       console.log("target Delete post")
       console.log("this.props.id",this.props.id);
       oReq.send(JSON.stringify({
-        id:this.props.id
+      id:this.props.id
       }));
-     }
+    }
   }
 
-    handleChange(event){
-    let newState = {}
-    newState[event.target.name] = event.target.value;
-    this.setState(newState);
-    console.log("####",this.state);
-    console.log("event$$$",event)
-    }
-
-
-
-
+  handleChange(event){
+  let newState = {}
+  newState[event.target.name] = event.target.value;
+  this.setState(newState);
+  console.log("####",this.state);
+  console.log("event$$$",event)
+  }
 
   render() {
     let cardButton;
     let cardBox = "cardBox";
-
     if(this.props.Status === "Queue") {
       cardButton = (
         <div>
           <button onClick={this.handleSubmit}>In Progress</button>
         </div>
-      )}
-      if(this.props.Status === "In Progress"){
-        cardButton = (
+      )
+    }
+    if(this.props.Status === "In Progress") {
+      cardButton = (
         <div>
           <button onClick={this.handleSubmit}>Done</button>
           <button onClick={this.handleSubmit}>Queue</button>
         </div>
-        )
-      }
-      if(this.props.Status === "Done"){
-        cardButton = (
+      )
+    }
+    if(this.props.Status === "Done") {
+      cardButton = (
         <div>
           <button onClick={this.handleSubmit}>In Progress</button>
         </div>
-        )
-      }
-      if(this.props.Priority === "Low"){
+      )
+    }
+    if(this.props.Priority === "Low") {
       cardBox = "cardBox1"
-      }
-      if(this.props.Priority === "Medium"){
+    }
+    if(this.props.Priority === "Medium") {
       cardBox = "cardBox2"
-      }
-      if(this.props.Priority === "High"){
+    }
+    if(this.props.Priority === "High") {
       cardBox = "cardBox"
-      }
-
+    }
     return (
       <div className={cardBox}>
         <div className="kanbanCard">
