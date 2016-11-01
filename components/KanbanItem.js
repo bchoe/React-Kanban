@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { moveCards } from '../actions/kanbanActions'
+import { deleteCard } from '../actions/kanbanActions'
 import KanbanPage from './KanbanPage'
 
 class KanbanItem extends React.Component{
@@ -11,60 +12,71 @@ class KanbanItem extends React.Component{
   };
 
   handleSubmit(event) {
-
     let targetStatus = event.target.innerHTML;
+    if(targetStatus !== "Delete"){
 
-    event.preventDefault();
-    this.props.moveCards({
-      id:this.props.id,
-      status: targetStatus
-    });
 
-    const oReq = new XMLHttpRequest();
-    oReq.addEventListener("load", (data)=>{
-    });
-    oReq.addEventListener("error", ()=>{});
-
-      oReq.open("PUT", "http://localhost:3000/api/edit");
-      oReq.setRequestHeader("content-type", "application/json");
-
-    if(targetStatus === "Queue"){
-      console.log("target queue")
-      oReq.send(JSON.stringify({
-        Title:this.props.Title,
-        Status:"hello"
-       }));
-    } if(targetStatus === "Done") {
-       oReq.send(JSON.stringify({
-        Title:this.props.Title,
-        Status:this.props.Status
-       }));
-    } if(targetStatus === "In Progress"){
-      let targetStatus = event.target.innerHTML;
       event.preventDefault();
       this.props.moveCards({
         id:this.props.id,
         status: targetStatus
       });
 
-    }else{
       const oReq = new XMLHttpRequest();
-      oReq.addEventListener("load", (data)=>{});
+      oReq.addEventListener("load", (data)=>{
+      });
       oReq.addEventListener("error", ()=>{});
-      oReq.open("PUT", "http://localhost:3000/api/delete");
+
+
+      if(targetStatus === "Queue"){
+        console.log("target queue")
+        oReq.send(JSON.stringify({
+          Title:this.props.Title,
+          Status:"hello"
+         }));
+      }
+      if(targetStatus === "Done") {
+         oReq.send(JSON.stringify({
+          Title:this.props.Title,
+          Status:this.props.Status
+         }));
+      }
+      if(targetStatus === "In Progress"){
+        let targetStatus = event.target.innerHTML;
+        event.preventDefault();
+        this.props.moveCards({
+          id:this.props.id,
+          status: targetStatus
+        });
+      }
+      //delete does not like this.
+      oReq.send(JSON.stringify({
+        Title:this.props.Title,
+        Priority:this.props.Priority,
+        Status: this.props.Status,
+        Createdby:this.props.Createdby,
+        Assignedto:this.props.Assignedto
+      }));
+
+    } else {
+      this.props.deleteCard(this.props.id)
+      // this.props.deleteCard({
+      // id: this.props.id,
+      // status: targetStatus
+      // });
+      const oReq = new XMLHttpRequest();
+      oReq.addEventListener("load", (data) => {});
+      oReq.addEventListener("error", () => {});
+      oReq.open("DELETE", "http://localhost:3000/api/delete");
       oReq.setRequestHeader("content-type", "application/json");
       console.log("target Delete post")
-      console.log("this.props.title",this.props.Title);
+      console.log("this.props.id",this.props.id);
+      oReq.send(JSON.stringify({
+        id:this.props.id
+      }));
      }
-
-    oReq.send(JSON.stringify({
-      Title:this.props.Title,
-      Priority:this.props.Priority,
-      Status: this.props.Status,
-      Createdby:this.props.Createdby,
-      Assignedto:this.pros.Assignedto
-    }));
   }
+
     handleChange(event){
     let newState = {}
     newState[event.target.name] = event.target.value;
@@ -79,27 +91,41 @@ class KanbanItem extends React.Component{
 
   render() {
     let cardButton;
+    let cardBox = "cardBox";
+
     if(this.props.Status === "Queue") {
       cardButton = (
         <div>
           <button onClick={this.handleSubmit}>In Progress</button>
         </div>
-      )} if(this.props.Status === "In Progress"){
+      )}
+      if(this.props.Status === "In Progress"){
         cardButton = (
         <div>
           <button onClick={this.handleSubmit}>Done</button>
           <button onClick={this.handleSubmit}>Queue</button>
         </div>
         )
-      } if(this.props.Status === "Done"){
+      }
+      if(this.props.Status === "Done"){
         cardButton = (
         <div>
           <button onClick={this.handleSubmit}>In Progress</button>
         </div>
         )
       }
+      if(this.props.Priority === "Low"){
+      cardBox = "cardBox1"
+      }
+      if(this.props.Priority === "Medium"){
+      cardBox = "cardBox2"
+      }
+      if(this.props.Priority === "High"){
+      cardBox = "cardBox"
+      }
+
     return (
-      <div className="cardBox">
+      <div className={cardBox}>
         <div className="kanbanCard">
           <h4>Task: {this.props.Title}</h4>
           <p>Priority: {this.props.Priority}</p>
@@ -120,5 +146,5 @@ const mapStateToProps = (state, ownProps) => {
 }
 
 export default connect(
-  mapStateToProps,{ moveCards }
+  mapStateToProps,{ moveCards, deleteCard }
 )(KanbanItem);

@@ -19,6 +19,12 @@ div.kanbanCardField {
   display: flex;
 }
 
+.Queue, .Progress,.Done {
+  width:300px;
+
+}
+
+
 .newKanbanCard {
   padding-top: 120px;
   margin: 30px;
@@ -30,21 +36,18 @@ div.kanbanCardField {
   justify-content: space-between;
 }
 
-.Queue {
-  display: inline-block;
-
-}
-
-.Progress {
-  display: inline-block;
-}
-
-.Done {
-  display: inline-block;
-}
-
 .cardBox {
-  width: 500px;
+  width: 300px;
+  height: 500px;
+  margin: 0 auto;
+  background-image: url('../views/yellow.png');
+  background-size: 500px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.cardBox1 {
+  width: 300px;
   height: 500px;
   margin: 0 auto;
   background-image: url('../views/blue.jpg');
@@ -52,11 +55,23 @@ div.kanbanCardField {
   background-position: center;
   background-repeat: no-repeat;
 }
+.cardBox2 {
+  width: 300px;
+  height: 500px;
+  margin: 0 auto;
+  background-image: url('../views/green.png');
+  background-size: 500px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+
+
 
 .kanbanCard {
-  padding-left: 50px;
   padding-top: 120px;
-  width: 400px;
+  width: 300px;
+  padding-left: 10px;
   text-align: center;
 }
 .newCardBackground{

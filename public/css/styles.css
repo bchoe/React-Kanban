@@ -19,31 +19,33 @@ div.kanbanCardField {
   display: flex; }
 
 /* line 22, /Users/bryanchoe/Desktop/devLeague/React-Kanban/sass/styles.scss */
+.Queue, .Progress, .Done {
+  width: 300px; }
+
+/* line 28, /Users/bryanchoe/Desktop/devLeague/React-Kanban/sass/styles.scss */
 .newKanbanCard {
   padding-top: 120px;
   margin: 30px; }
 
-/* line 27, /Users/bryanchoe/Desktop/devLeague/React-Kanban/sass/styles.scss */
+/* line 33, /Users/bryanchoe/Desktop/devLeague/React-Kanban/sass/styles.scss */
 #list {
   display: flex;
   flex-direction: row;
   justify-content: space-between; }
 
-/* line 33, /Users/bryanchoe/Desktop/devLeague/React-Kanban/sass/styles.scss */
-.Queue {
-  display: inline-block; }
-
-/* line 38, /Users/bryanchoe/Desktop/devLeague/React-Kanban/sass/styles.scss */
-.Progress {
-  display: inline-block; }
-
-/* line 42, /Users/bryanchoe/Desktop/devLeague/React-Kanban/sass/styles.scss */
-.Done {
-  display: inline-block; }
-
-/* line 46, /Users/bryanchoe/Desktop/devLeague/React-Kanban/sass/styles.scss */
+/* line 39, /Users/bryanchoe/Desktop/devLeague/React-Kanban/sass/styles.scss */
 .cardBox {
-  width: 500px;
+  width: 300px;
+  height: 500px;
+  margin: 0 auto;
+  background-image: url("../views/yellow.png");
+  background-size: 500px;
+  background-position: center;
+  background-repeat: no-repeat; }
+
+/* line 49, /Users/bryanchoe/Desktop/devLeague/React-Kanban/sass/styles.scss */
+.cardBox1 {
+  width: 300px;
   height: 500px;
   margin: 0 auto;
   background-image: url("../views/blue.jpg");
@@ -51,14 +53,24 @@ div.kanbanCardField {
   background-position: center;
   background-repeat: no-repeat; }
 
-/* line 56, /Users/bryanchoe/Desktop/devLeague/React-Kanban/sass/styles.scss */
+/* line 58, /Users/bryanchoe/Desktop/devLeague/React-Kanban/sass/styles.scss */
+.cardBox2 {
+  width: 300px;
+  height: 500px;
+  margin: 0 auto;
+  background-image: url("../views/green.png");
+  background-size: 500px;
+  background-position: center;
+  background-repeat: no-repeat; }
+
+/* line 71, /Users/bryanchoe/Desktop/devLeague/React-Kanban/sass/styles.scss */
 .kanbanCard {
-  padding-left: 50px;
   padding-top: 120px;
-  width: 400px;
+  width: 300px;
+  padding-left: 10px;
   text-align: center; }
 
-/* line 62, /Users/bryanchoe/Desktop/devLeague/React-Kanban/sass/styles.scss */
+/* line 77, /Users/bryanchoe/Desktop/devLeague/React-Kanban/sass/styles.scss */
 .newCardBackground {
   background-image: url("../views/notepad.png");
   background-position: center;
@@ -68,7 +80,7 @@ div.kanbanCardField {
   height: 400px;
   margin: auto; }
 
-/* line 71, /Users/bryanchoe/Desktop/devLeague/React-Kanban/sass/styles.scss */
+/* line 86, /Users/bryanchoe/Desktop/devLeague/React-Kanban/sass/styles.scss */
 .newCardBackground {
   padding-top: 0px;
   text-align: center; }

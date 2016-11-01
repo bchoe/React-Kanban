@@ -60,7 +60,6 @@ class KanbanPage extends React.Component {
           createNewCard={this.createNewCard}
         />
         <div className='kanbanList'>
-          <h2> Kanban List</h2>
             <div id="list">
               <KanbanList
 

@@ -16,6 +16,7 @@ cardRouter.route('/')
 
 cardRouter.route('/new')
   .post((req,res) => {
+    console.log("req.body",req.body)
     Card.create({
       Title:req.body.Title,
       Priority:req.body.Priority,
@@ -49,6 +50,7 @@ cardRouter.route('/:id')
   //edit status
 cardRouter.route('/edit')
   .put((req,res) => {
+    console.log("wrong route to hit")
     if (req.body.Status === "Queue") {
       Status = "In Progress";
     } else if (req.body.Status === "Done"){
@@ -82,15 +84,19 @@ cardRouter.route('/edit')
   });
   cardRouter.route('/delete')
   .delete((req,res) => {
-    Card.destroy({
-      where:{
-        Title: req.body.Title,
-        Status: 'Done'
-
-      }
-    }).then(data => {
-       res.json({sucess:true});
-    });
+    Card.findById()
+    .then((card) => {
+      Card.destroy({
+        where:{
+          id: req.body.id,
+        }
+      });
+       Card.findAll()
+       .then(allCards => {
+         res.json(allCards);
+       });
+    })
+    console.log("delete hit")
   });
 
   cardRouter.route('/editPost')
