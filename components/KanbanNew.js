@@ -30,7 +30,11 @@ class KanbanNew extends React.Component {
       Createdby: this.state.createdby,
       Assignedto: this.state.assignedto
     });
+
+
   }
+
+
 
   render() {
     //console.log(this.props)
