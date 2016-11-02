@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { addAllCards } from '../actions/kanbanActions'
+import { addAllCards } from '../actions/kanbanActions';
 import KanbanList from './KanbanList';
 import KanbanNew from './KanbanNew';
 

@@ -29,12 +29,14 @@ class KanbanNew extends React.Component {
 
   }
 
-
+/*
+class="kanbanCardField"
+class="newKanban"*/
 
   render() {
     return (
-      <div class="kanbanCardField">
-        <div class="newKanban">
+      <div>
+        <div>
           <div className="newCardBackground">
             <h3 className="newKanbanCard" >New Kanban Card
               <form method ="post" action="/new" type="text">
