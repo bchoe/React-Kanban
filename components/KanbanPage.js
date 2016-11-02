@@ -25,11 +25,9 @@ class KanbanPage extends React.Component {
   }
 
   createNewCard(newCard){
-    console.log('hit', newCard);
     const oReq = new XMLHttpRequest();
     oReq.addEventListener("load", this.loadData);
     oReq.addEventListener("error", this.onKanbanError);
-    console.log(`${this.props.kanbanUrl}/new`);
     oReq.open("POST", `${this.props.kanbanUrl}/new`);
     oReq.setRequestHeader("content-type", "application/json");
     oReq.send(JSON.stringify(newCard));
@@ -48,7 +46,6 @@ class KanbanPage extends React.Component {
   }
 
   render() {
-    //console.log('this.props',this.props)
     return (
       <div id='header'>
         <h1>Kanban Page</h1>

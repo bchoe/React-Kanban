@@ -10,20 +10,15 @@ class KanbanNew extends React.Component {
   }
     //this is when anything on the input is being typed in by the user
   handleChange(event) {
-    console.log("event.target", event.target.value)
-    console.log("event.target.name", event.target.name)
     let newState = {}
     newState[event.target.name] = event.target.value;
     this.setState(newState);
-    console.log("####",this.state);
-    console.log("event$$$",event)
   }
 
     //this is when button is clicked
     handleSubmit(event) {
     //prevents browser from submiting method
     event.preventDefault()
-    console.log("event@@",event)
     this.props.createNewCard({
       Title: this.state.title,
       Priority: this.state.priority,
@@ -37,7 +32,6 @@ class KanbanNew extends React.Component {
 
 
   render() {
-    //console.log(this.props)
     return (
       <div class="kanbanCardField">
         <div class="newKanban">

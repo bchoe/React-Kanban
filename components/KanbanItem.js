@@ -32,7 +32,6 @@ class KanbanItem extends React.Component {
       }));
 
       if(targetStatus === "Queue"){
-        console.log("target queue")
         oReq.send(JSON.stringify({
           Title:this.props.Title,
           Status:"hello"
@@ -68,8 +67,6 @@ class KanbanItem extends React.Component {
       oReq.addEventListener("error", () => {});
       oReq.open("DELETE", `${this.props.kanbanUrl}/delete`);
       oReq.setRequestHeader("content-type", "application/json");
-      console.log("target Delete post")
-      console.log("this.props.id",this.props.id);
       oReq.send(JSON.stringify({
       id:this.props.id
       }));
@@ -80,8 +77,6 @@ class KanbanItem extends React.Component {
   let newState = {}
   newState[event.target.name] = event.target.value;
   this.setState(newState);
-  console.log("####",this.state);
-  console.log("event$$$",event)
   }
 
   render() {
