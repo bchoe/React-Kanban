@@ -9,6 +9,7 @@ const config = require('./webpack.config.js');
 const bodyParser = require('body-parser');
 const route = require('./routes/cards.js');
 const db = require('./models');
+//remove this
 app.use(express.static('./public'));
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());

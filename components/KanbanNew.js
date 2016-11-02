@@ -26,6 +26,7 @@ class KanbanNew extends React.Component {
       Assignedto: this.state.assignedto
     });
 
+    //put function as close to the source as possible ie. createNewCard
 
   }
 
@@ -35,8 +36,8 @@ class="newKanban"*/
 
   render() {
     return (
-      <div>
-        <div>
+
+
           <div className="newCardBackground">
             <h3 className="newKanbanCard" >New Kanban Card
               <form method ="post" action="/new" type="text">
@@ -52,8 +53,8 @@ class="newKanban"*/
               </form>
             </h3>
           </div>
-        </div>
-      </div>
+
+
     );
   }
 }

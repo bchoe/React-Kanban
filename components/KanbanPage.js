@@ -81,12 +81,14 @@ class KanbanPage extends React.Component {
   }
 }
 
+//remove
+
 KanbanPage.defaultProps = {
   queue: React.PropTypes.array,
   progress: React.PropTypes.array,
   done: React.PropTypes.array
 }
-
+//remove
 KanbanPage.defaultProps = {
   queue: [],
   progress: [],
@@ -96,6 +98,7 @@ KanbanPage.defaultProps = {
 const mapStateToProps = (state, ownProps) => {
   const { kanbanPageReducer} = state;
   return {
+    //type array
     data: kanbanPageReducer.toJS()
   }
 }
