@@ -1,14 +1,19 @@
 import React from 'react';
-
+import { connect } from 'react-redux';
+import { moveCards } from '../actions/kanbanActions'
+import { newCard } from '../actions/kanbanActions'
+import { deleteCard } from '../actions/kanbanActions'
 class KanbanNew extends React.Component {
   constructor(props) {
     super(props);
     this.state = {title: "", priority: "", createdby: "", assignedto: ""}
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-
+    // this.createNewCard = this.createNewCard.bind(this)
   }
+
     //this is when anything on the input is being typed in by the user
+
   handleChange(event) {
     let newState = {}
     newState[event.target.name] = event.target.value;
@@ -17,14 +22,28 @@ class KanbanNew extends React.Component {
 
     //this is when button is clicked
     handleSubmit(event) {
-    //prevents browser from submiting method
-    event.preventDefault()
+      event.preventDefault();
+      const { dispatch } = this.props;
+      const parsedData = JSON.parse(event.currentTarget.response);
+      dispatch(newCard(parsedData.cards));
+
     this.props.createNewCard({
-      Title: this.state.title,
-      Priority: this.state.priority,
-      Createdby: this.state.createdby,
-      Assignedto: this.state.assignedto
-    });
+            Title: this.state.title,
+            Priority: this.state.priority,
+            Createdby: this.state.createdby,
+            Assignedto: this.state.assignedto
+        });
+
+      const oReq = new XMLHttpRequest();
+      dispatch(newCard(parsedData.cards));
+      oReq.addEventListener("load", {});
+      oReq.addEventListener("error", {});
+      oReq.open("POST", `${this.props.kanbanUrl}/new`);
+      oReq.setRequestHeader("content-type", "application/json");
+      oReq.send(JSON.stringify(newCard));
+      //prevents browser from submiting method
+      event.preventDefault()
+
 
     //put function as close to the source as possible ie. createNewCard
 
@@ -59,4 +78,14 @@ class="newKanban"*/
   }
 }
 
-export default KanbanNew;
+
+const mapStateToProps = (state, ownProps) => {
+  const { kanbanPageReducer } = state;
+  return {
+    data: kanbanPageReducer.toJS()
+  }
+}
+
+export default connect(
+  mapStateToProps,{ moveCards, deleteCard, newCard }
+)(KanbanNew);

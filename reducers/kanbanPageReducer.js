@@ -1,5 +1,5 @@
 import { List } from 'immutable';
-import { ADD_ALL_CARDS, MOVE_CARDS, DELETE_CARDS } from '../actions/kanbanActions';
+import { ADD_ALL_CARDS, MOVE_CARDS, DELETE_CARDS , NEW_CARD} from '../actions/kanbanActions';
 
 const initialState = List();
 
@@ -7,6 +7,9 @@ const kanbanPageReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_ALL_CARDS:
       return List(action.data);
+
+    case NEW_CARD:
+    return List(action.data);
 
     case MOVE_CARDS:
       let indexToUpdate = state.findIndex(card => {
