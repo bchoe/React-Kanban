@@ -8,8 +8,8 @@ class KanbanPage extends React.Component {
   constructor() {
     super();
 
-    this.onKanban = this.onKanban.bind(this)
-    this.loadData = this.loadData.bind(this)
+    this.onKanban = this.onKanban.bind(this);
+    this.loadData = this.loadData.bind(this);
 
   }
 
@@ -49,7 +49,7 @@ class KanbanPage extends React.Component {
               <KanbanList
 
                 columnName = 'Queue'
-                queue={this.props.data.filter( card =>{
+                queue={this.props.data.filter( card => {
                   return card.Status === 'Queue'
                 })}
 
@@ -62,7 +62,7 @@ class KanbanPage extends React.Component {
               />
               <KanbanList
                 columnName = 'Done'
-                queue={this.props.data.filter( card =>{
+                queue={this.props.data.filter( card => {
                   return card.Status === 'Done'
                 })}
               />

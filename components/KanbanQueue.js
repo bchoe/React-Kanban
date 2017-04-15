@@ -8,6 +8,4 @@ class KanbanQueue extends React.Component {
   }
 }
 
-
-
 export default KanbanQueue;

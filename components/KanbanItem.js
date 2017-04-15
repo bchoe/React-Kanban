@@ -1,14 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { moveCards } from '../actions/kanbanActions'
-import { deleteCard } from '../actions/kanbanActions'
-import KanbanPage from './KanbanPage'
+import { moveCards } from '../actions/kanbanActions';
+import { deleteCard } from '../actions/kanbanActions';
+import KanbanPage from './KanbanPage';
 
 class KanbanItem extends React.Component {
   constructor() {
     super();
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.state = {title: "", priority: "", createdby: "", assignedto: ""}
+    this.state = {title: "", priority: "", createdby: "", assignedto: ""};
   };
 
   handleSubmit(event) {
@@ -61,7 +61,7 @@ class KanbanItem extends React.Component {
       }));
 
     } else {
-      this.props.deleteCard(this.props.id)
+      this.props.deleteCard(this.props.id);
       const oReq = new XMLHttpRequest();
       oReq.addEventListener("load", (data) => {});
       oReq.addEventListener("error", () => {});
@@ -74,7 +74,7 @@ class KanbanItem extends React.Component {
   }
 
   handleChange(event){
-  let newState = {}
+  let newState = {};
   newState[event.target.name] = event.target.value;
   this.setState(newState);
   }
