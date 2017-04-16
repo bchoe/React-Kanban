@@ -7,23 +7,19 @@ import KanbanNew from './KanbanNew';
 class KanbanPage extends React.Component {
   constructor() {
     super();
-
     this.onKanban = this.onKanban.bind(this);
     this.loadData = this.loadData.bind(this);
-
   }
 
   onKanban(data) {
     const { dispatch } = this.props;
     const parsedData = JSON.parse(data.currentTarget.response);
-
     dispatch(addAllCards(parsedData.cards));
   }
 
   onKanbanError(error) {
     console.log('error: ', error);
   }
-
 
   loadData(){
     const oReq = new XMLHttpRequest();
@@ -47,12 +43,10 @@ class KanbanPage extends React.Component {
         <div className='kanbanList'>
             <div id="list">
               <KanbanList
-
                 columnName = 'Queue'
                 queue={this.props.data.filter( card => {
                   return card.Status === 'Queue'
                 })}
-
               />
               <KanbanList
                 columnName = 'In Progress'
